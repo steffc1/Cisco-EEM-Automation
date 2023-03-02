@@ -1,5 +1,7 @@
 # Cisco-EEM-Automation
 
+SCRIPTS
+
 Block command:
 Blocks the usage of the "switchport trunk allowed vlan" command. Sends an email to the specified inbox with more information.
 
