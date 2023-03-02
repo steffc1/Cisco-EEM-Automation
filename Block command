@@ -6,3 +6,13 @@ Event cli pattern “switchport trunk allowed vlan [0-9*]” sync yes
  action 1   puts "Command Blocked. Please consider using the 'switchport trunk allowed vlan add' command instead"
  action 3   mail server "<mail server ip>" to "<destination email address>" from "$_info_routername@<email domain>" subject "Command blocked on $_info_routername" body "$body3 $body $body2"
  action 4   set _exit_status "0"
+
+
+EXPLANATION OF EACH LINE IN SCRIPT
+
+Line 1: Specifies the command to look for. "Sync yes" runs the script before executing the cli command.
+Line 2: Acquires the hostname of the networking device. This is required to use the "$_info_routername" variable in line 7.
+Line 3-5: Create variables and add content to them. Due to the cli character limit, its not possible to add the entire body in one variable.
+Line 6: When user attempts to use the blocked command, they will receive the specified error instead.
+Line 7: An email will be sent with the router/switch as the sender. The email will include the text from the body variables.
+Line 8: Blocks executed command.
