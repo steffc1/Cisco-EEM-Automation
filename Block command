@@ -1,0 +1,8 @@
+Event cli pattern “switchport trunk allowed vlan [0-9*]” sync yes 
+ action 0.1 info type routername
+ action 0.2 set body "This command will remove all vlans except for the one specified. It will stop previously allowed vlan traffic from traversing this port, causing network connectivity loss and the inability to"
+ action 0.3 set body2 "login to the device. Instead, use the 'switchport trunk allowed vlan add' command to add the vlan without removing the ones already on the port."
+ action 0.4 set body3 "Usage of 'switchport trunk allowed vlan' is blocked."
+ action 1   puts "Command Blocked. Please consider using the 'switchport trunk allowed vlan add' command instead"
+ action 3   mail server "<mail server ip>" to "<destination email address>" from "$_info_routername@<email domain>" subject "Command blocked on $_info_routername" body "$body3 $body $body2"
+ action 4   set _exit_status "0"
