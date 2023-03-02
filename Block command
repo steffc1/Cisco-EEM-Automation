@@ -15,4 +15,4 @@ Line 2: Acquires the hostname of the networking device. This is required to use 
 Line 3-5: Create variables and add content to them. Due to the cli character limit, its not possible to add the entire body in one variable.
 Line 6: When user attempts to use the blocked command, they will receive the specified error instead.
 Line 7: An email will be sent with the router/switch as the sender. The email will include the text from the body variables.
-Line 8: Blocks executed command.
+Line 8: Blocks executed command..
