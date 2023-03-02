@@ -1,0 +1,12 @@
+ event cli pattern {%CDP-4-NATIVE_VLAN_MISMATCH}
+ action 0.1 regexp "(.*)" "$_syslog_msg" match syslog
+ action 0.2 info type routername
+ action 1   mail server "<mail server ip>" to "<destination email address>" from "$_info_routername@<email domain>" subject "Trunk Port Alert on $_info_routername" body "Please review the following system log and investigate: $syslog"
+ 
+ EXPLANATION OF EACH LINE IN SCRIPT
+
+Line 1: Specifies pattern to look for.
+Line 2: What this is doing is taking the entire syslog and placing it in the syslog variable. We can then add the variable to the body of the email as "$syslog"
+Line 3: Acquires the hostname of the networking device. This is required to use the "$_info_routername" variable in line 4. 
+Line 4: Send email to specified email address. Using the $syslog variable, the body will include the syslog message.
+
