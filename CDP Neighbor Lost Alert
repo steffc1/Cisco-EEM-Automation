@@ -1,0 +1,12 @@
+ event neighbor-discovery interface regexp GigabitEthernet.* cdp delete
+ action 0.1 info type routername
+ action 0.2 set body "Connection lost to $_nd_cdp_entry_name. Please investigate"
+ action 1.0 mail server "<mail server ip>" to "<destination email address>" from "$_info_routername@<email domain>" subject "CDP Neighbor Lost on $_info_routername" body "$body"
+ 
+ 
+ EXPLANATION OF EACH LINE IN SCRIPT
+
+Line 1: Triggers script if a cdp neighbor is lost on any Gigabit Ethernet interface.
+Line 2: Acquires the hostname of the networking device. This is required to use the "$_info_routername" variable in line 4.
+Line 3: Create body variable to be used line 4. $_nd_cdp_entry_name will hold the lost cdp neighbor name.
+Line 4: Send email to specified email address. Email subject will provide name of router/switch that the neighbor was lost on. Email body will provide the name of the lost cdp neighbor. 
